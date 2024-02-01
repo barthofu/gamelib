@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using Wpf.Ui.TaskBar;
 
-namespace gamelib;
+namespace gamelib.Pages;
 
 public partial class DashboardPage
 {

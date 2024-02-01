@@ -4,7 +4,7 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                   Title="WPF UI - Simple Demo"
+                   Title="Games Library"
                    Width="1200"
                    Height="654"
                    d:DesignHeight="650"
@@ -28,13 +28,29 @@
                     Content="Home"
                     Icon="Home24"
                     PageTag="home"
-                    PageType="{x:Type local:DashboardPage}" />
-                <ui:NavigationItem Content="Apps" Icon="AppFolder24" />
-                <ui:NavigationItem Content="Mail" Icon="Mail24" />
+                    PageType="{x:Type local:Pages.DashboardPage}" />
+                <ui:NavigationItem
+                    Content="Games"
+                    Icon="Games24"
+                    PageTag="games"
+                    PageType="{x:Type local:Pages.GamesPage}" />
+                <ui:NavigationItem
+                    Content="Favorites"
+                    Icon="Star48"
+                    PageTag="favorites"
+                    PageType="{x:Type local:Pages.FavoritesPage}" />
             </ui:NavigationStore.Items>
             <ui:NavigationStore.Footer>
-                <ui:NavigationItem Content="Library" Icon="Library24" />
-                <ui:NavigationItem Content="Settings" Icon="Settings24" />
+                <ui:NavigationItem
+                    Content="Me"
+                    Icon="Person32"
+                    PageTag="me"
+                    PageType="{x:Type local:Pages.MePage}" />
+                <ui:NavigationItem
+                    Content="Settings"
+                    Icon="Settings24"
+                    PageTag="settings"
+                    PageType="{x:Type local:Pages.SettingsPage}" />
             </ui:NavigationStore.Footer>
         </ui:NavigationStore>
         <Frame
