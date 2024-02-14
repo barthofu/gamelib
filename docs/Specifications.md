@@ -13,8 +13,7 @@ Here are the key features of the application:
     - Provide filters to sort games by genre, platform, etc.
 
 2. **Add Games:**
-    - Allow the addition of new games with details such as title, genre, platform, release year, etc.
-    - Ability to add a cover image for each game.
+    - Allow the addition of new games through the RAWG API.
 
 3. **Game Details:**
     - Display complete details of a selected game, including the information entered during addition.
@@ -29,3 +28,5 @@ Here are the key features of the application:
 6. [Bonus] **Backup and Load:**
     - Implement the ability to save and load the video game library to ensure data persistence.
 
+7. [Bonus] **Random Game**
+    - Implement a feature to select a random game from the library and/or from RAWG.
