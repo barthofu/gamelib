@@ -1,0 +1,41 @@
+---
+title: "GameLib Database"
+---
+
+erDiagram
+    
+Game o{--o{ Genre : "belongs to"
+Game o{--o{ Platform : "belongs to"
+Game o{--o{ Tag : "has"
+
+Game {
+    int GameID
+    string Title
+    int ReleaseYear
+    string CoverImage
+    string Description
+    int Rating
+    int GenreID
+    int PlatformID
+}
+
+Tag {
+    int TagID
+    string TagName
+}
+
+Genre {
+    int GenreID
+    string GenreName
+}
+
+Platform {
+    int PlatformID
+    string PlatformName
+}
+
+Settings {
+    int SettingID
+    string SettingName
+    string SettingValue
+}
