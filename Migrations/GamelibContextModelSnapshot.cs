@@ -8,7 +8,7 @@ using gamelib.Context;
 
 namespace gamelib.Migrations
 {
-    [DbContext(typeof(GamelibContext))]
+    [DbContext(typeof(GamelibDbContext))]
     partial class GamelibContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
