@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using gamelib.Services;
 using Wpf.Ui.TaskBar;
 
 namespace gamelib.Pages;
@@ -9,6 +10,17 @@ public partial class DashboardPage
     public DashboardPage()
     {
         InitializeComponent();
+
+        Loaded += MainWindow_Loaded;
+    }
+    
+    private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        // TODO: remove all of this, was just meant for testing
+        var rawgService = new RawgService();
+        var game = await rawgService.GetGameAsync(41494);
+        
+        Console.WriteLine(game.Title);
     }
 
     private void TaskbarStateComboBox_OnSelectionChanged(
