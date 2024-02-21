@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Threading;
 using gamelib.Context;
 using gamelib.Exceptions;
@@ -14,7 +14,8 @@ namespace gamelib;
 /// </summary>
 public partial class App : Application
 {
-    private static readonly IHost _host = Host.CreateDefaultBuilder()
+    
+    private static readonly IHost _host = new HostBuilder()
         .ConfigureAppConfiguration(c => { c.SetBasePath(AppContext.BaseDirectory); })
         .ConfigureServices((_, services) =>
         {
