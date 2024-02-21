@@ -3,6 +3,7 @@ using System.Windows.Threading;
 using gamelib.Context;
 using gamelib.Exceptions;
 using gamelib.Services;
+using gamelib.ViewModels.Pages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +38,7 @@ public partial class App : Application
             services.AddSingleton<RawgService>();
 
             services.AddSingleton<MainWindow>();
+            services.AddSingleton<MeViewModel>();
         })
         .Build();
 

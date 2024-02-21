@@ -8,19 +8,39 @@
       d:DesignHeight="450"
       d:DesignWidth="800"
       mc:Ignorable="d"
-      Title="MePage">
-    <StackPanel>
-        <ui:CardAction Icon="Fluent24">
-            <StackPanel>
-                <TextBlock
-                    Margin="0,0,0,4"
-                    FontWeight="Medium"
-                    Text="Me Page" />
-                <TextBlock
-                    FontSize="11"
-                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
-                    Text="Click it and nothing will happen!" />
-            </StackPanel>
-        </ui:CardAction>
-    </StackPanel>
+      d:DataContext="{d:DesignInstance local:MePage,
+                                     IsDesignTimeCreatable=False}"
+      Title="About me">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   FontSize="28"
+                   LineHeight="36"
+                   Foreground="#B7FFFFFF"
+                   Margin="0 0 0 16"
+                   Text="About me" />
+
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="Transparent">
+            <ui:SymbolIcon Symbol="PersonCircle32" FontSize="68"></ui:SymbolIcon>
+            <TextBlock FontSize="20" 
+                       LineHeight="28"
+                       Foreground="#B7FFFFFF"
+                       TextAlignment="Center"
+                       Text="{Binding ViewModel.Name, Mode=OneWay}" />
+            <TextBlock FontSize="40" 
+                       LineHeight="52" 
+                       Margin="16"
+                       TextAlignment="Center"
+                       Foreground="#B7FFFFFF"
+                       Text="{Binding ViewModel.GamesCount, Mode=OneWay}" />
+            <ui:Button VerticalAlignment="Center" HorizontalAlignment="Center" Content="Edit my information" Icon="PersonEdit24"/>
+        </StackPanel>
+    </Grid>
 </Page>
