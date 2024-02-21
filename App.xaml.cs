@@ -14,7 +14,6 @@ namespace gamelib;
 /// </summary>
 public partial class App : Application
 {
-    
     private static readonly IHost _host = new HostBuilder()
         .ConfigureAppConfiguration(c => { c.SetBasePath(AppContext.BaseDirectory); })
         .ConfigureServices((_, services) =>
@@ -87,5 +86,11 @@ public partial class App : Application
 
             Current.Shutdown();
         }
+    }
+    
+    public static T GetRequiredService<T>()
+        where T : class
+    {
+        return _host.Services.GetRequiredService<T>();
     }
 }
