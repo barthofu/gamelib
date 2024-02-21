@@ -12,7 +12,6 @@ public partial class MainWindow
     public MainWindow()
     {
         _context = new GamelibContext();
-        _context.Database.EnsureCreated();
 
         Closed += (_, _) => _context.Dispose();
 
