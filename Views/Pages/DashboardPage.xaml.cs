@@ -7,19 +7,22 @@ namespace gamelib.Pages;
 
 public partial class DashboardPage
 {
+    private readonly RawgService _rawgService;
+
     public DashboardPage()
     {
+        _rawgService = App.GetRequiredService<RawgService>();
+
         InitializeComponent();
 
         Loaded += MainWindow_Loaded;
     }
-    
+
     private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
         // TODO: remove all of this, was just meant for testing
-        var rawgService = new RawgService();
-        var game = await rawgService.GetGameAsync(41494);
-        
+        var game = await _rawgService.GetGameAsync(41494);
+
         Console.WriteLine(game.Title);
     }
 

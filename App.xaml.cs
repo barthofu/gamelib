@@ -2,6 +2,7 @@ using System.Windows;
 using System.Windows.Threading;
 using gamelib.Context;
 using gamelib.Exceptions;
+using gamelib.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,16 +16,25 @@ namespace gamelib;
 public partial class App : Application
 {
     private static readonly IHost _host = new HostBuilder()
-        .ConfigureAppConfiguration(c => { c.SetBasePath(AppContext.BaseDirectory); })
+        .ConfigureAppConfiguration(builder =>
+        {
+            builder
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", false)
+                .AddEnvironmentVariables();
+        })
         .ConfigureServices((_, services) =>
         {
             services.AddDbContext<GamelibDbContext>(
                 options =>
                 {
-                    options.UseSqlite("Data Source=gamelib.db");
-                    options.UseLazyLoadingProxies();
+                    options
+                        .UseSqlite("Data Source=gamelib.db")
+                        .UseLazyLoadingProxies();
                 }
             );
+
+            services.AddSingleton<RawgService>();
 
             services.AddSingleton<MainWindow>();
         })
@@ -87,7 +97,7 @@ public partial class App : Application
             Current.Shutdown();
         }
     }
-    
+
     public static T GetRequiredService<T>()
         where T : class
     {
