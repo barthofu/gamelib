@@ -14,8 +14,6 @@ public partial class MainWindow
     {
         _dbContext = gamelibDbContext;
 
-        Closed += (_, _) => _dbContext.Dispose();
-
         InitializeComponent();
     }
 
