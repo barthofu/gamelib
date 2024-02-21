@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace gamelib.Models;
 
+[Index(nameof(Name), IsUnique = true)]
 public class Setting
 {
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
