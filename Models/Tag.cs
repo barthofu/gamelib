@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace gamelib.Models;
@@ -10,5 +11,6 @@ public class Tag
 
     public required string Name { get; set; }
 
-    public virtual List<Game> Games { get; } = new();
+    // relations
+    public virtual ObservableCollection<Game> Games { get; } = new();
 }

@@ -10,19 +10,15 @@ public class Game
     public int Id { get; set; }
 
     public required string Title { get; set; }
-    public required int ReleaseYear { get; set; }
+    public required string ReleaseDate { get; set; }
     public required string CoverImage { get; set; }
     public required string Description { get; set; }
-    public int Rating { get; set; }
+    public double Rating { get; set; }
     public bool IsStarred { get; set; }
+    public int RawgId { get; set; }
 
-    public int GenreId { get; set; }
-    [ForeignKey("GenreId")]
-    public virtual Genre Genre { get; set; }
-
-    public int PlatformId { get; set; }
-    [ForeignKey("PlatformId")]
-    public virtual Platform Platform { get; set; }
-
-    public virtual ObservableCollection<Tag> Tags { get; } = new();
+    // relations
+    public virtual ICollection<Tag> Tags { get; set; } = new ObservableCollection<Tag>();
+    public virtual ICollection<Platform> Platforms { get; set; } = new ObservableCollection<Platform>();
+    public virtual ICollection<Genre> Genres { get; set; } = new ObservableCollection<Genre>();
 }
