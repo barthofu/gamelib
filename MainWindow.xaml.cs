@@ -1,4 +1,5 @@
-﻿using gamelib.Context;
+﻿using System.Windows.Input;
+using gamelib.Context;
 
 namespace gamelib;
 
@@ -7,14 +8,20 @@ namespace gamelib;
 /// </summary>
 public partial class MainWindow
 {
-    private readonly GamelibContext _context;
+    private readonly GamelibDbContext _dbContext;
 
-    public MainWindow()
+    public MainWindow(GamelibDbContext gamelibDbContext)
     {
-        _context = new GamelibContext();
+        _dbContext = gamelibDbContext;
 
-        Closed += (_, _) => _context.Dispose();
+        Closed += (_, _) => _dbContext.Dispose();
 
         InitializeComponent();
+    }
+
+    protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
+    {
+        base.OnMouseDoubleClick(e);
+        Console.Write("test");
     }
 }

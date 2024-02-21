@@ -3,6 +3,9 @@ using System.Windows.Threading;
 using gamelib.Context;
 using gamelib.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace gamelib;
 
@@ -11,16 +14,31 @@ namespace gamelib;
 /// </summary>
 public partial class App : Application
 {
+    private static readonly IHost _host = Host.CreateDefaultBuilder()
+        .ConfigureAppConfiguration(c => { c.SetBasePath(AppContext.BaseDirectory); })
+        .ConfigureServices((_, services) =>
+        {
+            services.AddDbContext<GamelibDbContext>(
+                options =>
+                {
+                    options.UseSqlite("Data Source=gamelib.db");
+                    options.UseLazyLoadingProxies();
+                }
+            );
+
+            services.AddSingleton<MainWindow>();
+        })
+        .Build();
+
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
 
+        _host.Start();
+
         try
         {
-            using (var context = new GamelibContext())
-            {
-                context.Database.Migrate();
-            }
+            _host.Services.GetRequiredService<GamelibDbContext>().Database.Migrate();
         }
         catch (Exception ex)
         {
@@ -28,6 +46,16 @@ public partial class App : Application
         }
 
         DispatcherUnhandledException += Application_DispatcherUnhandledException;
+
+        _host.Services.GetRequiredService<MainWindow>().Show();
+    }
+
+    protected override void OnExit(ExitEventArgs e)
+    {
+        base.OnExit(e);
+
+        _host.StopAsync().Wait();
+        _host.Dispose();
     }
 
     private void Application_DispatcherUnhandledException(object sender,

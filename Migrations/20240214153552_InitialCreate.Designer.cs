@@ -9,7 +9,7 @@ using gamelib.Context;
 
 namespace gamelib.Migrations
 {
-    [DbContext(typeof(GamelibContext))]
+    [DbContext(typeof(GamelibDbContext))]
     [Migration("20240214153552_InitialCreate")]
     partial class InitialCreate
     {
