@@ -2,9 +2,9 @@
 
 namespace gamelib.Pages;
 
-public partial class GamesPage : Page
+public partial class AddGamePage : Page
 {
-    public GamesPage()
+    public AddGamePage()
     {
         InitializeComponent();
     }

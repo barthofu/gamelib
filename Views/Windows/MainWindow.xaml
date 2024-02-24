@@ -28,24 +28,19 @@
                     Content="Home"
                     Icon="Home24"
                     PageTag="home"
-                    PageType="{x:Type local:Pages.DashboardPage}" />
+                    PageType="{x:Type local:Pages.HomePage}" />
                 <ui:NavigationItem
-                    Content="Games"
-                    Icon="Games24"
-                    PageTag="games"
-                    PageType="{x:Type local:Pages.GamesPage}" />
-                <ui:NavigationItem
-                    Content="Favorites"
-                    Icon="Star48"
-                    PageTag="favorites"
-                    PageType="{x:Type local:Pages.FavoritesPage}" />
-            </ui:NavigationStore.Items>
-            <ui:NavigationStore.Footer>
+                    Content="Add"
+                    Icon="Add12"
+                    PageTag="add"
+                    PageType="{x:Type local:Pages.AddGamePage}" />
                 <ui:NavigationItem
                     Content="Me"
                     Icon="Person32"
                     PageTag="me"
                     PageType="{x:Type local:Pages.MePage}" />
+            </ui:NavigationStore.Items>
+            <ui:NavigationStore.Footer>
                 <ui:NavigationItem
                     Content="Settings"
                     Icon="Settings24"

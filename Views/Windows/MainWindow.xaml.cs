@@ -17,9 +17,9 @@ public partial class MainWindow
         InitializeComponent();
     }
 
-    protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
-    {
-        base.OnMouseDoubleClick(e);
-        Console.Write("test");
-    }
+    // protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
+    // {
+    //     base.OnMouseDoubleClick(e);
+    //     Console.Write("test");
+    // }
 }
