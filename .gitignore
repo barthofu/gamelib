@@ -1,6 +1,13 @@
+# artifacts
 bin/
 obj/
 /packages/
+
+# ide
 riderModule.iml
 /_ReSharper.Caches/
 /.idea
+
+# data
+*.db
+*.sqlite

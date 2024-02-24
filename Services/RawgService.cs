@@ -1,7 +1,6 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 using gamelib.Mappers;
 using gamelib.Models;
-using Microsoft.Extensions.Configuration;
 using JsonDocument = System.Text.Json.JsonDocument;
 
 namespace gamelib.Services;
@@ -12,14 +11,14 @@ public class RawgService
     private readonly string _apiKey;
     private readonly int _pageSize = 10;
 
-    public RawgService(IConfiguration configuration)
+    public RawgService()
     {
         _httpClient = new HttpClient
         {
             BaseAddress = new Uri("https://api.rawg.io/api/")
         };
 
-        _apiKey = configuration["Rawg:ApiKey"] ??
+        _apiKey = Environment.GetEnvironmentVariable("RAWG_API_KEY") ??
                   throw new Exception("The API key of RAWG not found in config file.");
 
         Console.WriteLine(_apiKey);
