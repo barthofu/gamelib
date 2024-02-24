@@ -1,4 +1,5 @@
-﻿using Wpf.Ui.Mvvm.Contracts;
+﻿using Wpf.Ui.Common;
+using Wpf.Ui.Mvvm.Contracts;
 
 namespace gamelib.Services;
 
@@ -9,17 +10,54 @@ public enum Level : ushort
     Info = 2
 }
 
-public class ToastService
+public class ToastService(ISnackbarService snackbarService)
 {
-    private readonly Dictionary<Level, ISnackbarService> _snackbars = new();
-
-    public void SetToastLevel(Level level, ISnackbarService snackbarService)
+    public void Show(Level level, string title, string message)
     {
-        _snackbars[level] = snackbarService;
+        switch (level)
+        {
+            case Level.Error:
+                ShowError(title, message);
+                break;
+            case Level.Success:
+                ShowSuccess(title, message);
+                break;
+            case Level.Info:
+                ShowInfo(title, message);
+                break;
+            default:
+                ShowInfo(title, message);
+                break;
+        }
     }
 
-    public void Show(Level level, string message)
+    public void ShowError(string title, string message)
     {
-        _snackbars[level].Show(message);
+        snackbarService.Show(
+            title,
+            message,
+            SymbolRegular.ErrorCircle24,
+            ControlAppearance.Danger
+        );
+    }
+
+    public void ShowSuccess(string title, string message)
+    {
+        snackbarService.Show(
+            title,
+            message,
+            SymbolRegular.CheckmarkCircle32,
+            ControlAppearance.Success
+        );
+    }
+
+    public void ShowInfo(string title, string message)
+    {
+        snackbarService.Show(
+            title,
+            message,
+            SymbolRegular.Info24,
+            ControlAppearance.Info
+        );
     }
 }

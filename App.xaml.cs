@@ -38,11 +38,12 @@ public partial class App : Application
                 }
             );
 
+            services.AddSingleton<IDialogService, DialogService>();
+            services.AddSingleton<ISnackbarService, SnackbarService>();
+
             services.AddSingleton<RawgService>();
             services.AddSingleton<GameService>();
             services.AddSingleton<ToastService>();
-
-            services.AddSingleton<IDialogService, DialogService>();
 
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MeViewModel>();
@@ -87,10 +88,42 @@ public partial class App : Application
 
     private void HandleException(Exception exception)
     {
+        if ((_host.Services.GetService<MainWindow>()?.IsFocused ?? false) == false)
+        {
+            HandleExceptionWithoutSnackbar(exception);
+            return;
+        }
+
+
+        if (exception is GamelibException gamelibException)
+        {
+            ShowDangerToast(gamelibException.Message);
+        }
+        else
+        {
+            ShowDangerToast((exception.InnerException ?? exception).Message);
+
+            Current.Shutdown();
+        }
+    }
+
+    private void ShowDangerToast(string message)
+    {
+        _host.Services
+            .GetRequiredService<ToastService>()
+            .Show(
+                Level.Error,
+                "An error occured",
+                message
+            );
+    }
+
+    private void HandleExceptionWithoutSnackbar(Exception exception)
+    {
         if (exception is GamelibException gamelibException)
         {
             MessageBox.Show(
-                $"{exception.Message}",
+                exception.Message,
                 gamelibException.Caption,
                 MessageBoxButton.OK
             );
@@ -98,8 +131,8 @@ public partial class App : Application
         else
         {
             MessageBox.Show(
-                $"Une erreur vient de se produire : {exception.Message}",
-                "Erreur",
+                $"An error occurred : {(exception.InnerException ?? exception).Message}",
+                "Error",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error
             );

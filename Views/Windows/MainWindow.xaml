@@ -53,24 +53,20 @@
             Grid.Column="1"
             Margin="8,0,0,0" />
 
-        <ui:Snackbar Grid.Column="1" x:Name="ErrorSnackbar"
-                     Margin="18"
-                     VerticalAlignment="Bottom"
-                     Appearance="Danger" />
-        <ui:Snackbar Grid.Column="1" x:Name="SuccessSnackbar"
-                     Margin="18"
-                     VerticalAlignment="Bottom"
-                     Appearance="Success" />
-        <ui:Snackbar Grid.Column="1" x:Name="InfoSnackbar"
-                     Margin="18"
-                     VerticalAlignment="Bottom"
-                     Appearance="Info" />
-
         <!--  Dialogue is above all controls -->
         <ui:Dialog
             x:Name="RootDialog"
             Title="Root Dialog"
             Grid.Column="0"
             Grid.ColumnSpan="2" />
+
+        <ui:Snackbar Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     x:Name="RootSnackbar"
+                     Title="Root Snackbar"
+                     MaxWidth="600"
+                     Appearance="Secondary"
+                     CloseButtonEnabled="True"
+                     Timeout="5000" />
     </Grid>
 </controls:UiWindow>

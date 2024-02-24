@@ -10,28 +10,12 @@ namespace gamelib.Views.Windows;
 /// </summary>
 public partial class MainWindow
 {
-    private readonly GamelibDbContext _dbContext;
-
-    public MainWindow(GamelibDbContext gamelibDbContext,
-        ToastService toastService,
-        IDialogService dialogService)
+    public MainWindow(IDialogService dialogService,
+        ISnackbarService snackbarService)
     {
-        _dbContext = gamelibDbContext;
-
         InitializeComponent();
 
-        var infoSnackbar = new SnackbarService();
-        infoSnackbar.SetSnackbarControl(InfoSnackbar);
-        toastService.SetToastLevel(Level.Info, infoSnackbar);
-
-        var successSnackbar = new SnackbarService();
-        successSnackbar.SetSnackbarControl(SuccessSnackbar);
-        toastService.SetToastLevel(Level.Success, successSnackbar);
-
-        var errorSnackbar = new SnackbarService();
-        errorSnackbar.SetSnackbarControl(ErrorSnackbar);
-        toastService.SetToastLevel(Level.Error, errorSnackbar);
-
         dialogService.SetDialogControl(RootDialog);
+        snackbarService.SetSnackbarControl(RootSnackbar);
     }
 }
