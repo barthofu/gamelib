@@ -1,7 +1,7 @@
 ﻿using gamelib.ViewModels.Pages;
 using Wpf.Ui.Common.Interfaces;
 
-namespace gamelib.Pages;
+namespace gamelib.Views.Pages;
 
 public partial class MePage : INavigableView<MeViewModel>
 {

@@ -2,7 +2,9 @@
 
 ## Introduction
 
-Welcome to the ultimate video game library management application, a feature-rich solution built using WPF and C# to enhance your gaming experience. This application provides a user-friendly interface and a plethora of functionalities tailored to meet the needs of avid gamers and collectors alike.
+Welcome to the ultimate video game library management application, a feature-rich solution built using WPF and C# to
+enhance your gaming experience. This application provides a user-friendly interface and a plethora of functionalities
+tailored to meet the needs of avid gamers and collectors alike.
 
 ## Features
 

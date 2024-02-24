@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace gamelib.Pages;
+namespace gamelib.Views.Pages;
 
 public partial class SettingsPage : Page
 {

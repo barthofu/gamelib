@@ -3,5 +3,5 @@
 public enum SettingNameEnum
 {
     FirstName,
-    LastName,
+    LastName
 }

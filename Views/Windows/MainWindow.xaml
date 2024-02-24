@@ -1,4 +1,4 @@
-﻿<controls:UiWindow x:Class="gamelib.MainWindow"
+﻿<controls:UiWindow x:Class="gamelib.Views.Windows.MainWindow"
                    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -12,8 +12,8 @@
                    Background="{DynamicResource ApplicationBackgroundBrush}"
                    WindowStartupLocation="CenterScreen"
                    mc:Ignorable="d"
-                   xmlns:local="clr-namespace:gamelib"
-                   xmlns:controls="http://schemas.lepo.co/wpfui/2022/xaml">
+                   xmlns:controls="http://schemas.lepo.co/wpfui/2022/xaml"
+                   xmlns:pages="clr-namespace:gamelib.Views.Pages">
     <Grid Margin="8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -28,29 +28,42 @@
                     Content="Home"
                     Icon="Home24"
                     PageTag="home"
-                    PageType="{x:Type local:Pages.HomePage}" />
+                    PageType="{x:Type pages:HomePage}" />
                 <ui:NavigationItem
                     Content="Add"
                     Icon="Add12"
                     PageTag="add"
-                    PageType="{x:Type local:Pages.AddGamePage}" />
+                    PageType="{x:Type pages:AddGamePage}" />
                 <ui:NavigationItem
                     Content="Me"
                     Icon="Person32"
                     PageTag="me"
-                    PageType="{x:Type local:Pages.MePage}" />
+                    PageType="{x:Type pages:MePage}" />
             </ui:NavigationStore.Items>
             <ui:NavigationStore.Footer>
                 <ui:NavigationItem
                     Content="Settings"
                     Icon="Settings24"
                     PageTag="settings"
-                    PageType="{x:Type local:Pages.SettingsPage}" />
+                    PageType="{x:Type pages:SettingsPage}" />
             </ui:NavigationStore.Footer>
         </ui:NavigationStore>
         <Frame
             x:Name="MainFrame"
             Grid.Column="1"
             Margin="8,0,0,0" />
+        
+        <ui:Snackbar Grid.Column="1" x:Name="ErrorSnackbar"
+                     Margin="18"
+                     VerticalAlignment="Bottom"
+                     Appearance="Danger" />
+        <ui:Snackbar Grid.Column="1" x:Name="SuccessSnackbar"
+                     Margin="18"
+                     VerticalAlignment="Bottom"
+                     Appearance="Success" />
+        <ui:Snackbar Grid.Column="1" x:Name="InfoSnackbar"
+                     Margin="18"
+                     VerticalAlignment="Bottom"
+                     Appearance="Info" />
     </Grid>
 </controls:UiWindow>

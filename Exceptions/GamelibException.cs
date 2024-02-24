@@ -2,8 +2,6 @@
 
 public class GamelibException : Exception
 {
-    public string Caption { get; }
-
     public GamelibException(string message, string caption) : base(message)
     {
         Caption = caption;
@@ -14,4 +12,6 @@ public class GamelibException : Exception
     {
         Caption = caption;
     }
+
+    public string Caption { get; }
 }

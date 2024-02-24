@@ -8,7 +8,17 @@ namespace gamelib.ViewModels.Pages;
 
 public class MeViewModel : INotifyPropertyChanged
 {
-    private GamelibDbContext _dbContext;
+    private readonly GamelibDbContext _dbContext;
+
+    private string? _firstName;
+    private int _gamesCount;
+    private string? _lastName;
+
+    public MeViewModel(GamelibDbContext gamelibDbContext)
+    {
+        _dbContext = gamelibDbContext;
+        LoadData();
+    }
 
     public string Name => _firstName != null && _lastName != null
         ? $"{_firstName} {_lastName}"
@@ -16,15 +26,7 @@ public class MeViewModel : INotifyPropertyChanged
 
     public string GamesCount => $"You have {_gamesCount} game{(_gamesCount > 0 ? "s" : "")}";
 
-    private string? _firstName;
-    private string? _lastName;
-    private int _gamesCount;
-
-    public MeViewModel(GamelibDbContext gamelibDbContext)
-    {
-        _dbContext = gamelibDbContext;
-        LoadData();
-    }
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     private async void LoadData()
     {
@@ -46,8 +48,6 @@ public class MeViewModel : INotifyPropertyChanged
         );
         SetField(ref _gamesCount, await _dbContext.Games.CountAsync(), nameof(GamesCount));
     }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
