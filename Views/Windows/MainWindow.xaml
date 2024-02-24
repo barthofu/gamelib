@@ -52,7 +52,7 @@
             x:Name="MainFrame"
             Grid.Column="1"
             Margin="8,0,0,0" />
-        
+
         <ui:Snackbar Grid.Column="1" x:Name="ErrorSnackbar"
                      Margin="18"
                      VerticalAlignment="Bottom"
@@ -65,7 +65,7 @@
                      Margin="18"
                      VerticalAlignment="Bottom"
                      Appearance="Info" />
-        
+
         <!--  Dialogue is above all controls -->
         <ui:Dialog
             x:Name="RootDialog"
