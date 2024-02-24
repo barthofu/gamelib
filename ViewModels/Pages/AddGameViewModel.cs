@@ -4,7 +4,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using gamelib.Models;
 using gamelib.Services;
-using Wpf.Ui.Mvvm.Contracts;
 
 namespace gamelib.ViewModels.Pages;
 
@@ -14,7 +13,7 @@ public class AddGameViewModel : INotifyPropertyChanged
     private readonly RawgService _rawgService;
     private readonly ToastService _toastService;
     private string _query = string.Empty;
-    
+
     public AddGameViewModel(
         RawgService rawgService,
         GameService gameService,
@@ -59,7 +58,7 @@ public class AddGameViewModel : INotifyPropertyChanged
     {
         if (sender is not Border border) return;
         if (border.DataContext is not Game game) return;
-        
+
         // Check if the game is already in the database
         // if it is, don't add it
         if (_gameService.GameExists(game)) _toastService.Show(Level.Error, "Game already exists in the database.");

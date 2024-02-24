@@ -1,8 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using gamelib.ViewModels.Pages;
-using Wpf.Ui.Mvvm.Contracts;
-using Wpf.Ui.Mvvm.Services;
 
 namespace gamelib.Views.Pages;
 

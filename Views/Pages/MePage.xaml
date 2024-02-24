@@ -1,4 +1,4 @@
-﻿<Page x:Class="gamelib.Views.Pages.MePage"
+<Page x:Class="gamelib.Views.Pages.MePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -24,6 +24,7 @@
                    Text="About me" />
 
         <StackPanel Grid.Row="1"
+                    x:Name="Panel"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Background="Transparent">
@@ -39,7 +40,11 @@
                        TextAlignment="Center"
                        Foreground="#B7FFFFFF"
                        Text="{Binding ViewModel.GamesCount, Mode=OneWay}" />
-            <ui:Button VerticalAlignment="Center" HorizontalAlignment="Center" Content="Edit my information"
+            <ui:Button VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Content="Edit my information"
+                       Command="{Binding ViewModel.EditCommand}"
+                       CommandParameter="{Binding ElementName=Panel}"
                        Icon="PersonEdit24" />
         </StackPanel>
     </Grid>
