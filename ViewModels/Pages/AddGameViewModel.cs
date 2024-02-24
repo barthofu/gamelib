@@ -48,7 +48,6 @@ public class AddGameViewModel : INotifyPropertyChanged
     private async void Search()
     {
         var games = await _rawgService.SearchGamesAsync(Query);
-        Console.WriteLine(games.Length);
 
         Games.Clear();
         games.ToList().ForEach(Games.Add);

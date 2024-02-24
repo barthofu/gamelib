@@ -20,8 +20,6 @@ public class RawgService
 
         _apiKey = Environment.GetEnvironmentVariable("RAWG_API_KEY") ??
                   throw new Exception("The API key of RAWG not found in config file.");
-
-        Console.WriteLine(_apiKey);
     }
 
     public async Task<Game> GetGameAsync(int id)
