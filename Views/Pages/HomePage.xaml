@@ -17,16 +17,31 @@
 
         <StackPanel CanVerticallyScroll="True">
 
-            <TextBlock
-                Margin="40, 30"
-                FontSize="24"
-                FontWeight="SemiBold"
-                Foreground="{DynamicResource TextFillColorTertiaryBrush}">
-                My Library
-            </TextBlock>
+            <Grid VerticalAlignment="Center" Margin="40, 30">
+
+                <TextBlock
+                    HorizontalAlignment="Left"
+                    FontSize="24"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource TextFillColorTertiaryBrush}">
+                    My Library
+                </TextBlock>
+
+                <Grid HorizontalAlignment="Right" Width="400">
+
+                    <ui:TextBox
+                        Text="{Binding ViewModel.FilterQuery, Mode=TwoWay, Delay=300, UpdateSourceTrigger=PropertyChanged}"
+                        PlaceholderText="Search..." BorderBrush="Transparent"
+                        AutoWordSelection="True" Icon="Search24"
+                        MaxLines="1" />
+                </Grid>
+
+            </Grid>
+
 
             <Grid>
-                <ui:VirtualizingItemsControl ItemsSource="{Binding Games}" HorizontalContentAlignment="Center">
+                <ui:VirtualizingItemsControl ItemsSource="{Binding ViewModel.FilteredGames}"
+                                             HorizontalContentAlignment="Center">
                     <ui:VirtualizingItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ui:VirtualizingWrapPanel SpacingMode="BetweenItemsOnly" Orientation="Vertical"

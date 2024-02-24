@@ -28,7 +28,9 @@
                     Content="Home"
                     Icon="Home24"
                     PageTag="home"
-                    PageType="{x:Type pages:HomePage}" />
+                    PageType="{x:Type pages:HomePage}" 
+                    
+                    />
                 <ui:NavigationItem
                     Content="Add"
                     Icon="Add12"

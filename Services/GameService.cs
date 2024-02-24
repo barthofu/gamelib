@@ -39,11 +39,18 @@ public class GameService
 
     public Game[] GetGames()
     {
-        return _dbContext.Games.ToArray();
+        return _dbContext.Games.ToArray()!;
     }
 
-    public Game GetGame(int id)
+    public Game? GetGame(int id)
     {
         return _dbContext.Games.Find(id);
+    }
+
+    public Game[] SearchGames(string query)
+    {
+        return _dbContext.Games
+            .Where(game => game!.Title.ToLower().Contains(query.ToLower()))
+            .ToArray()!;
     }
 }
