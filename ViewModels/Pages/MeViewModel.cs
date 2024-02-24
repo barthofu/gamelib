@@ -31,10 +31,6 @@ public sealed class MeViewModel : INotifyPropertyChanged
         LoadDataEvent.Invoke(this, EventArgs.Empty);
     }
 
-    public string Name => _firstName != null && _lastName != null
-        ? $"{_firstName} {_lastName}"
-        : "Please configure a name.";
-
     public string GamesCount => $"You have {_gamesCount} game{(_gamesCount > 0 ? "s" : "")}";
 
     public ICommand EditCommand => new AsyncRelayCommand(OpenEditModal);
@@ -42,9 +38,6 @@ public sealed class MeViewModel : INotifyPropertyChanged
     public string Name => _firstName != null && _lastName != null
         ? $"{_firstName} {_lastName}"
         : "Please configure a name.";
-
-    public string GamesCount => $"You have {_gamesCount} game{(_gamesCount > 0 ? "s" : "")}";
-    public event PropertyChangedEventHandler? PropertyChanged;
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
