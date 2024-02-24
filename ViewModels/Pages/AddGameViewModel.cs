@@ -61,9 +61,9 @@ public class AddGameViewModel : INotifyPropertyChanged
 
         // Check if the game is already in the database
         // if it is, don't add it
-        if (_gameService.GameExists(game)) _toastService.Show(Level.Error, "Game already exists in the database.");
+        if (_gameService.GameExists(game)) _toastService.Show(Level.Error, "Error", "Game already exists in the database.");
 
         // Add the game to the database
-        if (_gameService.AddGame(game)) _toastService.Show(Level.Success, "Game added to the database.");
+        if (_gameService.AddGame(game)) _toastService.Show(Level.Success, "Game added", "Game added to the database.");
     }
 }
