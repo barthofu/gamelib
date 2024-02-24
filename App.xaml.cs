@@ -42,6 +42,8 @@ public partial class App : Application
             services.AddSingleton<GameService>();
             services.AddSingleton<ToastService>();
 
+            services.AddSingleton<IDialogService, DialogService>();
+
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MeViewModel>();
             services.AddSingleton<AddGameViewModel>();

@@ -1,4 +1,4 @@
-﻿<controls:UiWindow x:Class="gamelib.Views.Windows.MainWindow"
+<controls:UiWindow x:Class="gamelib.Views.Windows.MainWindow"
                    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -65,5 +65,12 @@
                      Margin="18"
                      VerticalAlignment="Bottom"
                      Appearance="Info" />
+        
+        <!--  Dialogue is above all controls -->
+        <ui:Dialog
+            x:Name="RootDialog"
+            Title="Root Dialog"
+            Grid.Column="0"
+            Grid.ColumnSpan="2" />
     </Grid>
 </controls:UiWindow>
