@@ -48,6 +48,7 @@ public partial class App : Application
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MeViewModel>();
             services.AddSingleton<AddGameViewModel>();
+            services.AddSingleton<HomeViewModel>();
         })
         .Build();
 
