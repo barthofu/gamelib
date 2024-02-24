@@ -6,8 +6,11 @@ namespace gamelib.Models;
 
 public class Game
 {
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
+
+    public int RawgId { get; set; }
 
     public required string Title { get; set; }
     public required string ReleaseDate { get; set; }
@@ -15,7 +18,6 @@ public class Game
     public required string Description { get; set; }
     public double Rating { get; set; }
     public bool IsStarred { get; set; }
-    public int RawgId { get; set; }
 
     // relations
     public virtual ICollection<Tag> Tags { get; set; } = new ObservableCollection<Tag>();

@@ -5,11 +5,12 @@ namespace gamelib.Models;
 
 public class Platform
 {
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
-    
+
     public required string Name { get; set; }
-    
+
     // relations
     public virtual ICollection<Game> Games { get; } = new List<Game>();
 }

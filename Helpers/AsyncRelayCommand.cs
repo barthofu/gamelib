@@ -25,7 +25,6 @@ public class AsyncRelayCommand(
     private async Task ExecuteAsync(object? parameter)
     {
         if (CanExecute(parameter))
-        {
             try
             {
                 _isExecuting = true;
@@ -37,7 +36,6 @@ public class AsyncRelayCommand(
                 _isExecuting = false;
                 RaiseCanExecuteChanged();
             }
-        }
     }
 
     private void RaiseCanExecuteChanged()

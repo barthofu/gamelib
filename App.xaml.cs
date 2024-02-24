@@ -4,15 +4,18 @@ using gamelib.Context;
 using gamelib.Exceptions;
 using gamelib.Services;
 using gamelib.ViewModels.Pages;
+using gamelib.Views.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Wpf.Ui.Mvvm.Contracts;
+using Wpf.Ui.Mvvm.Services;
 
 namespace gamelib;
 
 /// <summary>
-/// Interaction logic for App.xaml
+///     Interaction logic for App.xaml
 /// </summary>
 public partial class App : Application
 {
@@ -36,9 +39,12 @@ public partial class App : Application
             );
 
             services.AddSingleton<RawgService>();
+            services.AddSingleton<GameService>();
+            services.AddSingleton<ToastService>();
 
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MeViewModel>();
+            services.AddSingleton<AddGameViewModel>();
         })
         .Build();
 

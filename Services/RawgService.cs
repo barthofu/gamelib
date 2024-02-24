@@ -7,8 +7,8 @@ namespace gamelib.Services;
 
 public class RawgService
 {
-    private readonly HttpClient _httpClient;
     private readonly string _apiKey;
+    private readonly HttpClient _httpClient;
     private readonly int _pageSize = 10;
 
     public RawgService()
