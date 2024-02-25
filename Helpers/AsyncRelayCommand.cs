@@ -3,11 +3,11 @@
 namespace gamelib.Helpers;
 
 public class AsyncRelayCommand(
-    Func<Task> execute,
+    Func<object?, Task> execute,
     Func<bool>? canExecute = null
 ) : ICommand
 {
-    private readonly Func<Task> _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+    private readonly Func<object?, Task> _execute = execute ?? throw new ArgumentNullException(nameof(execute));
     private bool _isExecuting;
 
     public event EventHandler? CanExecuteChanged;
@@ -29,7 +29,7 @@ public class AsyncRelayCommand(
             {
                 _isExecuting = true;
                 RaiseCanExecuteChanged();
-                await _execute();
+                await _execute(parameter);
             }
             finally
             {

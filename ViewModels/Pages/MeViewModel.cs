@@ -64,7 +64,7 @@ public sealed class MeViewModel : INotifyPropertyChanged
         SetField(ref _gamesCount, await _dbContext.Games.CountAsync(), nameof(GamesCount));
     }
 
-    private async Task OpenEditModal()
+    private async Task OpenEditModal(object? _)
     {
         var rootDialog = _dialogService
             .GetDialogControl();

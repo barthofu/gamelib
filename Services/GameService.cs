@@ -1,5 +1,6 @@
 ﻿using gamelib.Context;
 using gamelib.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace gamelib.Services;
 
@@ -12,45 +13,45 @@ public class GameService
         _dbContext = dbContext;
     }
 
-    public bool GameExists(Game game)
+    public Task<bool> GameExists(Game game)
     {
         return GameExists(game.RawgId);
     }
 
-    public bool GameExists(int rawgId)
+    public Task<bool> GameExists(int rawgId)
     {
         // we use the rawg id to check if the game is already in the database
-        return _dbContext.Games.Any(g => g.RawgId == rawgId);
+        return _dbContext.Games.AnyAsync(g => g.RawgId == rawgId);
     }
 
-    public bool AddGame(Game game)
+    public async Task<bool> AddGame(Game game)
     {
-        if (GameExists(game)) return false;
-        _dbContext.Add(game);
+        if (await GameExists(game)) return false;
+        await _dbContext.AddAsync(game);
 
-        return _dbContext.SaveChanges() > 0;
+        return await _dbContext.SaveChangesAsync() > 0;
     }
 
     public void RemoveGame(Game game)
     {
-        _dbContext.Remove(game);
+        _dbContext.Games.Remove(game);
         _dbContext.SaveChanges();
     }
 
-    public Game[] GetGames()
+    public Task<List<Game>> GetGames()
     {
-        return _dbContext.Games.ToArray()!;
+        return _dbContext.Games.ToListAsync();
     }
 
-    public Game? GetGame(int id)
+    public Task<Game?> GetGame(int id)
     {
-        return _dbContext.Games.Find(id);
+        return _dbContext.Games.FindAsync(id).AsTask();
     }
 
-    public Game[] SearchGames(string query)
+    public Task<List<Game>> SearchGames(string query)
     {
         return _dbContext.Games
-            .Where(game => game!.Title.ToLower().Contains(query.ToLower()))
-            .ToArray()!;
+            .Where(game => game.Title.ToLower().Contains(query.ToLower()))
+            .ToListAsync();
     }
 }
