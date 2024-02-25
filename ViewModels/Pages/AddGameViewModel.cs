@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
+using gamelib.Helpers;
 using gamelib.Models;
 using gamelib.Services;
 
@@ -13,6 +14,8 @@ public class AddGameViewModel : INotifyPropertyChanged
     private readonly RawgService _rawgService;
     private readonly ToastService _toastService;
     private string _query = string.Empty;
+
+    public ICommand OnGameItemClickCommand => new AsyncRelayCommand(OnGameItemClick);
 
     public AddGameViewModel(
         RawgService rawgService,
@@ -53,16 +56,15 @@ public class AddGameViewModel : INotifyPropertyChanged
         games.ToList().ForEach(Games.Add);
     }
 
-    public void OnGameItemClick(object sender, MouseButtonEventArgs e)
+    public async Task OnGameItemClick(object? sender)
     {
-        if (sender is not Border border) return;
-        if (border.DataContext is not Game game) return;
+        if (sender is not Game game) return;
 
         // Check if the game is already in the database
         // if it is, don't add it
-        if (_gameService.GameExists(game)) _toastService.Show(Level.Error, "Error", "Game already exists in the database.");
+        if (await _gameService.GameExists(game)) _toastService.Show(Level.Error, "Error", "Game already exists in the database.");
 
         // Add the game to the database
-        if (_gameService.AddGame(game)) _toastService.Show(Level.Success, "Game added", "Game added to the database.");
+        if (await _gameService.AddGame(game)) _toastService.Show(Level.Success, "Game added", "Game added to the database.");
     }
 }

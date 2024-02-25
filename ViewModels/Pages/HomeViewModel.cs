@@ -40,10 +40,10 @@ public class HomeViewModel : INotifyPropertyChanged
         }
     }
 
-    private void SearchGames()
+    private async void SearchGames()
     {
         FilteredGames.Clear();
-        _gameService.SearchGames(FilterQuery).ToList().ForEach(FilteredGames.Add);
+        (await _gameService.SearchGames(FilterQuery)).ForEach(FilteredGames.Add);
     }
 
     public void RefreshGameList()

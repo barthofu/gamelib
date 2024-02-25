@@ -9,7 +9,7 @@ public class GamelibDbContext : DbContext
     {
     }
 
-    public required DbSet<Game?> Games { get; set; }
+    public required DbSet<Game> Games { get; set; }
     public required DbSet<Genre> Genres { get; set; }
     public required DbSet<Platform> Platforms { get; set; }
     public required DbSet<Setting> Settings { get; set; }
