@@ -1,9 +1,3 @@
-using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using System.Windows.Input;
-using gamelib.Context;
-using gamelib.Models;
-using gamelib.Services;
 using gamelib.ViewModels.Pages;
 
 namespace gamelib.Views.Pages;
@@ -26,10 +20,4 @@ public partial class HomePage
             };
         }
     }
-
-    private void OnGameItemClick(object sender, MouseButtonEventArgs e)
-    {
-        ViewModel.OnGameItemClick(sender, e);
-    }
-
 }
