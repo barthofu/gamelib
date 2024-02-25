@@ -36,18 +36,13 @@
                     Icon="Add12"
                     PageTag="add"
                     PageType="{x:Type pages:AddGamePage}" />
+            </ui:NavigationStore.Items>
+            <ui:NavigationStore.Footer>
                 <ui:NavigationItem
                     Content="Me"
                     Icon="Person32"
                     PageTag="me"
                     PageType="{x:Type pages:MePage}" />
-            </ui:NavigationStore.Items>
-            <ui:NavigationStore.Footer>
-                <ui:NavigationItem
-                    Content="Settings"
-                    Icon="Settings24"
-                    PageTag="settings"
-                    PageType="{x:Type pages:SettingsPage}" />
             </ui:NavigationStore.Footer>
         </ui:NavigationStore>
         <Frame

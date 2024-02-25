@@ -44,9 +44,6 @@
         <Page Update="Views\Pages\MePage.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
-        <Page Update="Views\Pages\SettingsPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
         <Page Update="Views\Windows\MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <XamlRuntime>Wpf</XamlRuntime>
