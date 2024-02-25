@@ -21,6 +21,7 @@
         </Grid.ColumnDefinitions>
         <ui:NavigationStore
             Grid.Column="0"
+            x:Name="NavigationStore"
             Frame="{Binding ElementName=MainFrame}"
             SelectedPageIndex="0">
             <ui:NavigationStore.Items>

@@ -1,4 +1,5 @@
 using gamelib.ViewModels.Pages;
+using gamelib.Views.Windows;
 
 namespace gamelib.Views.Pages;
 
@@ -12,12 +13,9 @@ public partial class HomePage
         ViewModel = App.GetRequiredService<HomeViewModel>();
         DataContext = this;
 
-        if (NavigationService != null)
+        App.GetRequiredService<MainWindow>().NavigationStore.Navigated += (_, args) =>
         {
-            NavigationService.Navigated += (_, args) =>
-            {
-                if (args.Content is HomePage) ViewModel.RefreshGameList();
-            };
-        }
+            if (args.CurrentPage.PageType == typeof(HomePage)) ViewModel.RefreshGameList();
+        };
     }
 }

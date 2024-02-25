@@ -57,7 +57,7 @@ public class HomeViewModel : INotifyPropertyChanged
         if (sender is not Game game) return;
 
         var gameDetailsPage = new GameDetailsPage(game);
-        _mainWindow.MainFrame.NavigationService?.Navigate(gameDetailsPage);
+        _mainWindow.NavigationStore.NavigateExternal(gameDetailsPage);
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
