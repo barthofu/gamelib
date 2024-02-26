@@ -1,9 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace gamelib.Models;
 
+[Index(nameof(Slug), IsUnique = true)]
+[Index(nameof(RawgId), IsUnique = true)]
 public class Game
 {
     [Key]
@@ -12,6 +15,7 @@ public class Game
 
     public int RawgId { get; set; }
 
+    public required string Slug { get; set; }
     public required string Title { get; set; }
     public required string ReleaseDate { get; set; }
     public required string CoverImage { get; set; }

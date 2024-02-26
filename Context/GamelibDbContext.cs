@@ -14,11 +14,4 @@ public class GamelibDbContext : DbContext
     public required DbSet<Platform> Platforms { get; set; }
     public required DbSet<Setting> Settings { get; set; }
     public required DbSet<Tag> Tags { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Game>()
-            .HasIndex(u => u.RawgId)
-            .IsUnique();
-    }
 }

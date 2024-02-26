@@ -48,4 +48,9 @@ public class RawgService
 
         return games;
     }
+
+    public static string GetRawgUrl(Game game)
+    {
+        return $"https://rawg.io/games/{game.Slug}";
+    }
 }
