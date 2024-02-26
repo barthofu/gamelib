@@ -11,6 +11,7 @@ public class GameMapper
         {
             Title = rawgGame.GetProperty("name").GetString() ?? "No Title",
             RawgId = rawgGame.GetProperty("id").GetInt32(),
+            Slug = rawgGame.GetProperty("slug").GetString() ?? string.Empty,
             ReleaseDate = rawgGame.TryGetProperty("released", out var released)
                 ? released.GetString() ?? "No Release Date"
                 : "No Release Date",

@@ -1,15 +1,19 @@
-﻿using System.Windows.Controls;
-using gamelib.Models;
+﻿using gamelib.Models;
+using gamelib.ViewModels.Pages;
+using Wpf.Ui.Common.Interfaces;
 
 namespace gamelib.Views.Pages;
 
-public partial class GameDetailsPage : Page
+public partial class GameDetailsPage : INavigableView<GameDetailsViewModel>
 {
-    private readonly Game _game;
-
     public GameDetailsPage(Game game)
     {
+        ViewModel = App.GetRequiredService<GameDetailsViewModel>();
+        DataContext = this;
+        ViewModel.LoadGame(game);
+
         InitializeComponent();
-        _game = game;
     }
+
+    public GameDetailsViewModel ViewModel { get; }
 }
