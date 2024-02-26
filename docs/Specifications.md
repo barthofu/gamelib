@@ -12,7 +12,6 @@ Here are the key features of the application:
 
 1. **Home Page:**
     - Display the list of available video games in the library.
-    - Provide filters to sort games by genre, platform, etc.
 
 2. **Add Games:**
     - Allow the addition of new games through the RAWG API.
@@ -22,10 +21,10 @@ Here are the key features of the application:
     - Ability to edit or delete game details.
 
 4. **Search:**
-    - Provide a search function to allow users to quickly find a specific game in the library.
+    - Provide a search function to allow users to quickly find a specific game in their library.
 
 5. **Statistics:**
-    - Display statistics on the collection, such as the total number of games, the number of borrowed games, etc.
+    - Display statistics on the collection, such as the total number of games.
 
 6. [Bonus] **Backup and Load:**
     - Implement the ability to save and load the video game library to ensure data persistence.

@@ -13,6 +13,7 @@ public class HomeViewModel : INotifyPropertyChanged
 {
     private readonly GameService _gameService;
     private readonly MainWindow _mainWindow;
+    private readonly ToastService _toastService;
 
     private string _filterQuery = string.Empty;
 
@@ -20,10 +21,11 @@ public class HomeViewModel : INotifyPropertyChanged
 
     public ICommand OnGameItemClickCommand => new RelayCommand(OnGameItemClick);
 
-    public HomeViewModel(GameService gameService, MainWindow mainWindow)
+    public HomeViewModel(GameService gameService, MainWindow mainWindow, ToastService toastService)
     {
         _gameService = gameService;
         _mainWindow = mainWindow;
+        _toastService = toastService;
 
         // init game list
         SearchGames();
@@ -40,6 +42,8 @@ public class HomeViewModel : INotifyPropertyChanged
         }
     }
 
+    public object OpenRandomGameCommand => new AsyncRelayCommand(OpenRandomGame);
+
     private async void SearchGames()
     {
         FilteredGames.Clear();
@@ -50,6 +54,19 @@ public class HomeViewModel : INotifyPropertyChanged
     {
         FilterQuery = string.Empty;
         SearchGames();
+    }
+
+    private async Task OpenRandomGame(object? _)
+    {
+        var game = await _gameService.GetRandomGame();
+        if (game is not null)
+        {
+            OnGameItemClick(game);
+        }
+        else
+        {
+            _toastService.ShowError("No game found.", "");
+        }
     }
 
     private void OnGameItemClick(object? sender)

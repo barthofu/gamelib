@@ -25,7 +25,9 @@ public class AddGameViewModel : INotifyPropertyChanged
         _rawgService = rawgService;
         _gameService = gameService;
         _toastService = toastService;
-        Search();
+        
+        // init game list
+        SearchRawgGames();
     }
 
     public ObservableCollection<Game> Games { get; } = new();
@@ -37,7 +39,7 @@ public class AddGameViewModel : INotifyPropertyChanged
         {
             _query = value;
             OnPropertyChanged(nameof(Query));
-            Search();
+            SearchRawgGames();
         }
     }
 
@@ -48,7 +50,7 @@ public class AddGameViewModel : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    private async void Search()
+    private async void SearchRawgGames()
     {
         var games = await _rawgService.SearchGamesAsync(Query);
 
