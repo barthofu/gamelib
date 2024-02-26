@@ -4,15 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace gamelib.Services;
 
-public class GameService
+public class GameService(GamelibDbContext dbContext)
 {
-    private readonly GamelibDbContext _dbContext;
-
-    public GameService(GamelibDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
     public Task<bool> GameExists(Game game)
     {
         return GameExists(game.RawgId);
@@ -21,37 +14,46 @@ public class GameService
     public Task<bool> GameExists(int rawgId)
     {
         // we use the rawg id to check if the game is already in the database
-        return _dbContext.Games.AnyAsync(g => g.RawgId == rawgId);
+        return dbContext.Games.AnyAsync(g => g.RawgId == rawgId);
     }
 
     public async Task<bool> AddGame(Game game)
     {
         if (await GameExists(game)) return false;
-        await _dbContext.AddAsync(game);
+        await dbContext.AddAsync(game);
 
-        return await _dbContext.SaveChangesAsync() > 0;
+        return await dbContext.SaveChangesAsync() > 0;
     }
 
     public void RemoveGame(Game game)
     {
-        _dbContext.Games.Remove(game);
-        _dbContext.SaveChanges();
+        dbContext.Games.Remove(game);
+        dbContext.SaveChanges();
     }
 
     public Task<List<Game>> GetGames()
     {
-        return _dbContext.Games.ToListAsync();
+        return dbContext.Games.ToListAsync();
     }
 
     public Task<Game?> GetGame(int id)
     {
-        return _dbContext.Games.FindAsync(id).AsTask();
+        return dbContext.Games
+            .FindAsync(id)
+            .AsTask();
     }
 
     public Task<List<Game>> SearchGames(string query)
     {
-        return _dbContext.Games
+        return dbContext.Games
             .Where(game => game.Title.ToLower().Contains(query.ToLower()))
             .ToListAsync();
+    }
+    
+    public Task<Game?> GetRandomGame()
+    {
+        return dbContext.Games
+            .OrderBy(_ => EF.Functions.Random())
+            .FirstOrDefaultAsync();
     }
 }

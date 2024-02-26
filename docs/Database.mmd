@@ -8,34 +8,35 @@ erDiagram
     Game o{--o{ Tag: "has"
 
     Game {
-        int GameID
+        int Id
         string Title
         int ReleaseYear
         string CoverImage
         string Description
         int Rating
         boolean IsFavorited
+        int RawgId
         int GenreID
         int PlatformID
     }
 
     Tag {
-        int TagID
+        int Id
         string TagName
     }
 
     Genre {
-        int GenreID
+        int Id
         string GenreName
     }
 
     Platform {
-        int PlatformID
+        int Id
         string PlatformName
     }
 
     Settings {
-        int SettingID
+        int Id
         string SettingName
         string SettingValue
     }

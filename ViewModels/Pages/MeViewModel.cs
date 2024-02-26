@@ -119,7 +119,7 @@ public sealed class MeViewModel : INotifyPropertyChanged
                 .AddAsync(new Setting
                 {
                     Name = SettingNameEnum.FirstName,
-                    Value = "test"
+                    Value = firstname
                 });
         }
     }
@@ -146,7 +146,7 @@ public sealed class MeViewModel : INotifyPropertyChanged
                 .AddAsync(new Setting
                 {
                     Name = SettingNameEnum.LastName,
-                    Value = "TEST"
+                    Value = lastname
                 });
         }
     }

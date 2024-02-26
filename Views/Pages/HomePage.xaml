@@ -29,12 +29,21 @@
                 </TextBlock>
 
                 <Grid HorizontalAlignment="Right" Width="400">
+                    
+                        <ui:Button Icon="Wand24" 
+                                   Margin="0, 10, 0, 0" 
+                                   VerticalAlignment="Center"
+                                   Command="{Binding ViewModel.OpenRandomGameCommand}"
+                                   />
+                        
+                        <Grid HorizontalAlignment="Right" Width="350">
+                            <ui:TextBox
+                                Text="{Binding ViewModel.FilterQuery, Mode=TwoWay, Delay=300, UpdateSourceTrigger=PropertyChanged}"
+                                PlaceholderText="Search..." BorderBrush="Transparent"
+                                AutoWordSelection="True" Icon="Search24"
+                                MaxLines="1" />
+                        </Grid>
 
-                    <ui:TextBox
-                        Text="{Binding ViewModel.FilterQuery, Mode=TwoWay, Delay=300, UpdateSourceTrigger=PropertyChanged}"
-                        PlaceholderText="Search..." BorderBrush="Transparent"
-                        AutoWordSelection="True" Icon="Search24"
-                        MaxLines="1" />
                 </Grid>
 
             </Grid>
