@@ -32,27 +32,26 @@
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
         </Page>
-        <Page Update="Views\Pages\HomePage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="Views\Pages\GameDetailsPage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="Views\Pages\AddGamePage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="Views\Pages\MePage.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="Views\Windows\MainWindow.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <XamlRuntime>Wpf</XamlRuntime>
-            <SubType>Designer</SubType>
-        </Page>
-        <Page Update="Controls\GameEditionControl.xaml">
+        <Page Update="src\Controls\MeEditionControl.xaml">
           <Generator>MSBuild:Compile</Generator>
-          <XamlRuntime>Wpf</XamlRuntime>
-          <SubType>Designer</SubType>
+        </Page>
+        <Page Update="src\Controls\GameEditionControl.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="src\Views\Pages\HomePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="src\Views\Pages\AddGamePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="src\Views\Pages\GameDetailsPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="src\Views\Pages\MePage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="src\Views\Windows\MainWindow.xaml">
+          <Generator>MSBuild:Compile</Generator>
         </Page>
     </ItemGroup>
 
@@ -60,6 +59,14 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ApplicationDefinition Include="src\App.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </ApplicationDefinition>
     </ItemGroup>
 
 </Project>
