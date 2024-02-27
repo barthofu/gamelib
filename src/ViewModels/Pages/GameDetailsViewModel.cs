@@ -6,6 +6,9 @@ using gamelib.Controls;
 using gamelib.Helpers;
 using gamelib.Models;
 using gamelib.Services;
+using gamelib.Views.Pages;
+using gamelib.Views.Windows;
+using Wpf.Ui.Controls;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
 
@@ -15,6 +18,8 @@ public class GameDetailsViewModel : INotifyPropertyChanged
 {
     private readonly GamelibDbContext _dbContext;
     private readonly IDialogService _dialogService;
+    private readonly NavigationStore _navigationStore;
+    private readonly ToastService _toastService;
 
     private Game? _game { get; set; }
 
@@ -33,12 +38,19 @@ public class GameDetailsViewModel : INotifyPropertyChanged
     public string? Url => _game?.Slug is not null ? RawgService.GetRawgUrl(_game) : null;
 
     public ICommand EditCommand => new AsyncRelayCommand(OpenEditModal);
+    public ICommand DeleteCommand => new AsyncRelayCommand(HandleDelete);
 
-    public GameDetailsViewModel(GamelibDbContext dbContext,
-        IDialogService dialogService)
+    public GameDetailsViewModel(
+        GamelibDbContext dbContext,
+        IDialogService dialogService,
+        MainWindow mainWindow,
+        ToastService toastService
+    )
     {
         _dbContext = dbContext;
         _dialogService = dialogService;
+        _navigationStore = mainWindow.NavigationStore;
+        _toastService = toastService;
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -105,5 +117,18 @@ public class GameDetailsViewModel : INotifyPropertyChanged
 
         await _dbContext.SaveChangesAsync();
         OnPropertyChanged(null);
+    }
+
+    private async Task HandleDelete(object? _)
+    {
+        if (_game is not null)
+        {
+            _dbContext.Games.Remove(_game);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        _toastService.ShowSuccess("Game deleted", "Game deleted from the database");
+        _navigationStore.Navigate(typeof(HomePage));
+        _game = null;
     }
 }

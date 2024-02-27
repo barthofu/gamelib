@@ -36,6 +36,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock FontSize="14"
@@ -52,11 +53,17 @@
                            Icon="Link48"
                            NavigateUri="{Binding ViewModel.Url}" />
                 <ui:Button Grid.Column="2"
-                           Margin="0,0,0,2"
+                           Margin="0,0,4,2"
                            Appearance="Secondary"
                            Icon="Edit48"
                            Content="Edit"
                            Command="{Binding ViewModel.EditCommand}" />
+                <ui:Button Grid.Column="3"
+                           Margin="0,0,0,2"
+                           Appearance="Danger"
+                           Icon="Delete48"
+                           Content="Delete"
+                           Command="{Binding ViewModel.DeleteCommand}" />
             </Grid>
 
             <Grid Grid.Row="1">
